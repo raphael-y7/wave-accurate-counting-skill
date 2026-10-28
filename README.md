@@ -121,7 +121,7 @@ pack 里被晋级为独立 skill 的 7 张卡：
 
 ## 测试与验证
 
-本仓库连生成过程的测试材料一起发布：`evals/test-prompts.json` 是 51 条触发与边界用例，`evals/test-results.md` 是逐项评分结果——包含失败与回炉修复的完整过程，不是只留通过记录。
+本仓库连生成过程的测试材料一起发布：逐项评分结果在根目录的 `test-results.md`——包含失败与回炉修复的完整过程，不是只留通过记录；触发与边界用例在各 skill 目录下的 `test-prompts.json` 里，入口级的完整 51 条 suite 在 `single/wave-accurate-counting-skill/test-prompts.json`。
 
 - **触发盲测**：51 条（should_trigger 25 / should_not_trigger 18 / edge_case 8），首轮 48 / 51，3 条因 description 边界重叠误选（如"6124 附近怎么设止损"被交易计划吸走），修订 description 后重测 3 / 3，最终 51 / 51
 - **诱饵容错**：18 条 should_not_trigger 全部未误触发被测入口
@@ -133,109 +133,31 @@ pack 里被晋级为独立 skill 的 7 张卡：
 
 ```text
 wave-accurate-counting-skill/
-├── README.md                      ← 你正在看的
-├── README.en.md                   ← English version
-├── LICENSE                        ← MIT
-├── INDEX.md                       ← skill 地图：能力总表 + 依赖关系 + 加载顺序
-├── BOOK_OVERVIEW.md               ← 整书理解（Adler 四步拆解，阶段 0 产出）
-├── verified.md                    ← 12 个规范单元的三重验证结论
-├── TEST_SUMMARY.md                ← Stage 4 压力测试摘要（范围 / 结构检查 / 结果）
-├── CANGJIE_ADAPTATION.md          ← 仓颉适配说明（文本状态 / 蒸馏目标 / 证据规则 / 边界）
-├── candidates/                    ← 阶段 1 五提取器候选池（原文候选，未晋级）
-│   ├── cases.md                   ← 案例 41 条
-│   ├── counter-examples.md        ← 反例 30 条
-│   ├── frameworks.md              ← 框架 30 条
-│   ├── glossary.md                ← 术语 39 条
-│   └── principles.md              ← 原则 40 条
-├── bundle/                        ← 审计用原始 Bundle，可复核 verified.yaml 与能力卡原文
-│   ├── verified.yaml              ← 12 张能力卡的规范定义与 promoted / router 去向
-│   ├── cards/
-│   │   ├── jingzhun-bottom-capture-skill.md
-│   │   ├── jingzhun-combination-structure-skill.md
-│   │   ├── jingzhun-complex-correction-skill.md
-│   │   ├── jingzhun-correction-patterns-skill.md
-│   │   ├── jingzhun-end-conditions-skill.md
-│   │   ├── jingzhun-horizon-extension-skill.md
-│   │   ├── jingzhun-multi-timeframe-skill.md
-│   │   ├── jingzhun-top-capture-skill.md
-│   │   ├── jingzhun-trade-plan-skill.md
-│   │   ├── jingzhun-trend-position-skill.md
-│   │   ├── jingzhun-triangle-trading-skill.md
-│   │   └── jingzhun-wave-levels-skill.md
-│   └── book/
-│       ├── glossary.md            ← 术语表
-│       └── overview.md            ← 整书概览
-├── single/                        ← 单一入口模式
-│   └── wave-accurate-counting-skill/
-│       ├── BUILD_MANIFEST.json    ← 编译清单与文件哈希
-│       ├── SKILL.md               ← 入口：触发条件 + 路由表 + 加载规则
-│       ├── test-prompts.json      ← 51 条 suite 级触发 / 近邻 / 边界用例
-│       └── references/
-│           ├── capability-index.md  ← 完整意图与关键词索引
-│           ├── cheatsheet.md      ← 决策规则速查
-│           ├── glossary.md        ← 术语表
-│           ├── overview.md        ← 整书概览
-│           └── capabilities/
-│               ├── jingzhun-bottom-capture-skill.md
-│               ├── jingzhun-combination-structure.md
-│               ├── jingzhun-complex-correction.md
-│               ├── jingzhun-correction-patterns.md
-│               ├── jingzhun-end-conditions-skill.md
-│               ├── jingzhun-horizon-extension.md
-│               ├── jingzhun-multi-timeframe-skill.md
-│               ├── jingzhun-top-capture-skill.md
-│               ├── jingzhun-trade-plan-skill.md
-│               ├── jingzhun-trend-position-skill.md
-│               ├── jingzhun-triangle-trading.md
-│               └── jingzhun-wave-levels-skill.md
-├── pack/                          ← 多入口模式（compact pack）
-│   ├── BUILD_MANIFEST.json
-│   ├── capability-destinations.json
-│   ├── jingzhun-bottom-capture-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 6 条本 skill 触发 / 近邻 / 边界用例
-│   ├── jingzhun-end-conditions-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 5 条
-│   ├── jingzhun-multi-timeframe-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 4 条
-│   ├── jingzhun-top-capture-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 7 条
-│   ├── jingzhun-trade-plan-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 4 条
-│   ├── jingzhun-trend-position-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 5 条
-│   ├── jingzhun-wave-levels-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 7 条
-│   └── wave-accurate-counting-skill-router/
-│       ├── SKILL.md               ← 来源路由入口
-│       ├── test-prompts.json      ← 10 条 router 触发 / 近邻用例
-│       └── references/
-│           ├── capability-index.md
-│           ├── cheatsheet.md
-│           ├── glossary.md
-│           ├── overview.md
-│           └── capabilities/
-│               ├── jingzhun-bottom-capture-skill.md
-│               ├── jingzhun-combination-structure.md
-│               ├── jingzhun-complex-correction.md
-│               ├── jingzhun-correction-patterns.md
-│               ├── jingzhun-end-conditions-skill.md
-│               ├── jingzhun-horizon-extension.md
-│               ├── jingzhun-multi-timeframe-skill.md
-│               ├── jingzhun-top-capture-skill.md
-│               ├── jingzhun-trade-plan-skill.md
-│               ├── jingzhun-trend-position-skill.md
-│               ├── jingzhun-triangle-trading.md
-│               └── jingzhun-wave-levels-skill.md
-└── evals/                         ← 触发与输出测试材料
-    ├── test-prompts.json          ← 51 条触发 / 近邻 / 边界用例
-    └── test-results.md            ← 逐项评分与回炉修复记录
+├── README.md              ← 你正在看的
+├── README.en.md           ← English version
+├── LICENSE                ← MIT
+├── BOOK_OVERVIEW.md       ← 阶段 0 产出：全书 Adler 分析
+├── INDEX.md               ← 阶段 3 产出：skill 总览 + 依赖关系
+├── verified.md            ← 通过三重验证的 12 个单元
+├── TEST_SUMMARY.md        ← 阶段 4 产出：压力测试摘要
+├── CANGJIE_ADAPTATION.md  ← 仓颉适配说明
+├── GITHUB_REPO.md         ← 仓库元数据
+├── test-results.md        ← 测试结果记录
+├── candidates/            ← 阶段 1 产出：原始候选池
+│   ├── frameworks.md      ← 框架与方法候选
+│   ├── principles.md      ← 原则 / 规则 / 计算候选
+│   ├── cases.md           ← 书中案例候选
+│   ├── counter-examples.md← 反例与边界候选
+│   └── glossary.md        ← 术语候选
+├── rejected/              ← 阶段 1.5 产出：被淘汰的单元 + 原因
+├── bundle/                ← 编译事实源
+│   ├── verified.yaml      ← 能力元数据、判据与去向
+│   ├── cards/             ← 能力卡源文件（六段结构）
+│   └── book/              ← overview.md + glossary.md
+├── single/                ← single 模式（1 个入口 + 全部能力卡）
+│   └── wave-accurate-counting-skill/SKILL.md  ← 入口：触发 + 路由表 + 加载规则
+└── pack/                  ← pack 模式（1 个路由入口 + 7 个晋级 skill）
+    └── */SKILL.md         ← 8 个 skill，每个附带 test-prompts.json
 ```
 
 ## 如何使用

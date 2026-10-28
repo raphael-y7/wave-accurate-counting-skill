@@ -121,7 +121,7 @@ The hard part in this book is the degree layer: every entry, stop and target han
 
 ## Testing and verification
 
-This repository publishes the test material from the generation process alongside the skills: `evals/test-prompts.json` holds 51 trigger and boundary cases, and `evals/test-results.md` is the item-by-item scoring log — including the failures and the rework, not just the passes.
+This repository publishes the test material from the generation process alongside the skills: the item-by-item scoring log is `test-results.md` at the repository root — including the failures and the rework, not just the passes; the trigger and boundary cases live in each skill directory's `test-prompts.json`, and the full 51-case entry-level suite is `single/wave-accurate-counting-skill/test-prompts.json`.
 
 - **Trigger blind tests**: 51 cases (should_trigger 25 / should_not_trigger 18 / edge_case 8). The first round scored 48 / 51; three cases were mis-routed because descriptions overlapped (for example "how do I set the stop and target near 6124" was pulled into the trade-plan card). After the descriptions were tightened and re-tested, all three hit, ending at 51 / 51
 - **Decoy tolerance**: all 18 should_not_trigger cases stayed silent against the entries under test
@@ -133,109 +133,31 @@ This repository publishes the test material from the generation process alongsid
 
 ```text
 wave-accurate-counting-skill/
-├── README.md                      ← Chinese version
-├── README.en.md                   ← you are reading this
-├── LICENSE                        ← MIT
-├── INDEX.md                       ← skill map: capability table + dependencies + loading order
-├── BOOK_OVERVIEW.md               ← whole-book comprehension (Adler four-step, stage 0 output)
-├── verified.md                    ← triple-verification conclusions for the 12 canonical units
-├── TEST_SUMMARY.md                ← stage 4 stress-test summary (scope / structure checks / results)
-├── CANGJIE_ADAPTATION.md          ← cangjie adaptation note (text status / goals / evidence rules / limits)
-├── candidates/                    ← stage 1 extractor candidate pool (raw, not promoted)
-│   ├── cases.md                   ← 41 cases
-│   ├── counter-examples.md        ← 30 counter-examples
-│   ├── frameworks.md              ← 30 frameworks
-│   ├── glossary.md                ← 39 glossary terms
-│   └── principles.md              ← 40 principles
-├── bundle/                        ← the audited source bundle, so verified.yaml and cards can be checked
-│   ├── verified.yaml              ← canonical definitions of the 12 cards with promoted / router destinations
-│   ├── cards/
-│   │   ├── jingzhun-bottom-capture-skill.md
-│   │   ├── jingzhun-combination-structure-skill.md
-│   │   ├── jingzhun-complex-correction-skill.md
-│   │   ├── jingzhun-correction-patterns-skill.md
-│   │   ├── jingzhun-end-conditions-skill.md
-│   │   ├── jingzhun-horizon-extension-skill.md
-│   │   ├── jingzhun-multi-timeframe-skill.md
-│   │   ├── jingzhun-top-capture-skill.md
-│   │   ├── jingzhun-trade-plan-skill.md
-│   │   ├── jingzhun-trend-position-skill.md
-│   │   ├── jingzhun-triangle-trading-skill.md
-│   │   └── jingzhun-wave-levels-skill.md
-│   └── book/
-│       ├── glossary.md            ← glossary
-│       └── overview.md            ← whole-book overview
-├── single/                        ← single-entry build
-│   └── wave-accurate-counting-skill/
-│       ├── BUILD_MANIFEST.json    ← build manifest and file hashes
-│       ├── SKILL.md               ← entry: triggers + routing table + loading rules
-│       ├── test-prompts.json      ← 51 suite-level trigger / near-miss / boundary cases
-│       └── references/
-│           ├── capability-index.md  ← full intent and keyword index
-│           ├── cheatsheet.md      ← decision-rule quick reference
-│           ├── glossary.md        ← glossary
-│           ├── overview.md        ← whole-book overview
-│           └── capabilities/
-│               ├── jingzhun-bottom-capture-skill.md
-│               ├── jingzhun-combination-structure.md
-│               ├── jingzhun-complex-correction.md
-│               ├── jingzhun-correction-patterns.md
-│               ├── jingzhun-end-conditions-skill.md
-│               ├── jingzhun-horizon-extension.md
-│               ├── jingzhun-multi-timeframe-skill.md
-│               ├── jingzhun-top-capture-skill.md
-│               ├── jingzhun-trade-plan-skill.md
-│               ├── jingzhun-trend-position-skill.md
-│               ├── jingzhun-triangle-trading.md
-│               └── jingzhun-wave-levels-skill.md
-├── pack/                          ← multi-entry build (compact pack)
-│   ├── BUILD_MANIFEST.json
-│   ├── capability-destinations.json
-│   ├── jingzhun-bottom-capture-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 6 trigger / near-miss / boundary cases
-│   ├── jingzhun-end-conditions-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 5
-│   ├── jingzhun-multi-timeframe-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 4
-│   ├── jingzhun-top-capture-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 7
-│   ├── jingzhun-trade-plan-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 4
-│   ├── jingzhun-trend-position-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 5
-│   ├── jingzhun-wave-levels-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 7
-│   └── wave-accurate-counting-skill-router/
-│       ├── SKILL.md               ← source router entry
-│       ├── test-prompts.json      ← 10 router trigger / near-miss cases
-│       └── references/
-│           ├── capability-index.md
-│           ├── cheatsheet.md
-│           ├── glossary.md
-│           ├── overview.md
-│           └── capabilities/
-│               ├── jingzhun-bottom-capture-skill.md
-│               ├── jingzhun-combination-structure.md
-│               ├── jingzhun-complex-correction.md
-│               ├── jingzhun-correction-patterns.md
-│               ├── jingzhun-end-conditions-skill.md
-│               ├── jingzhun-horizon-extension.md
-│               ├── jingzhun-multi-timeframe-skill.md
-│               ├── jingzhun-top-capture-skill.md
-│               ├── jingzhun-trade-plan-skill.md
-│               ├── jingzhun-trend-position-skill.md
-│               ├── jingzhun-triangle-trading.md
-│               └── jingzhun-wave-levels-skill.md
-└── evals/                         ← trigger and output test material
-    ├── test-prompts.json          ← 51 trigger / near-miss / boundary cases
-    └── test-results.md            ← item-by-item scoring and rework log
+├── README.md              ← Chinese version
+├── README.en.md           ← you are reading this
+├── LICENSE                ← MIT
+├── BOOK_OVERVIEW.md       ← stage 0 output: Adler whole-book analysis
+├── INDEX.md               ← stage 3 output: skill map + dependencies
+├── verified.md            ← 12 units that passed triple verification
+├── TEST_SUMMARY.md        ← stage 4 output: stress-test summary
+├── CANGJIE_ADAPTATION.md  ← cangjie adaptation notes
+├── GITHUB_REPO.md         ← repository metadata
+├── test-results.md        ← test result records
+├── candidates/            ← stage 1 output: raw candidate pool
+│   ├── frameworks.md      ← framework and method candidates
+│   ├── principles.md      ← principle / rule / calculation candidates
+│   ├── cases.md           ← case candidates from the book
+│   ├── counter-examples.md← counter-example and boundary candidates
+│   └── glossary.md        ← terminology candidates
+├── rejected/              ← stage 1.5 output: rejected units + reasons
+├── bundle/                ← compilation source of truth
+│   ├── verified.yaml      ← capability metadata, criteria and destinations
+│   ├── cards/             ← capability card sources (six sections)
+│   └── book/              ← overview.md + glossary.md
+├── single/                ← single-mode build (one entry + all capability cards)
+│   └── wave-accurate-counting-skill/SKILL.md  ← entry: triggers + routing table + loading rules
+└── pack/                  ← pack-mode build (one router + 7 promoted skills)
+    └── */SKILL.md         ← 8 skills, each shipping a test-prompts.json
 ```
 
 ## Usage

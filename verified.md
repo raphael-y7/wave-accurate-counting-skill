@@ -1,6 +1,6 @@
 # 阶段 1.5 — 三重验证结果（《精准数浪》）
 
-- 候选池：frameworks 30、principles 40、cases 41、counter-examples 30、glossary 39
+- 候选池：frameworks 30、principles 40、cases 41、counter-examples 30、glossary 39（合计 180 条）
 - 去重/聚类后：12 个能力单元（C1–C12）
 - 判定口径：V1 来源充分性 / V2 可执行性（walkthrough）/ V3 任务增益；三项全过 = verified
 - 说明：本阶段 walkthrough 为纸面演练，不代表实盘验证；阶段 4 另做真实任务输出核对。
@@ -306,7 +306,7 @@
 - f03+f17+f29+p03+p06+p14+p37 → C2
 - f04+f08+f09+p22-p27+p40 → C3
 - f05+f24+p13+p40 → C4
-- f06+f16+p05+p09+p10 → C5
+- f06+f16+p05+p06+p09+p10 → C5
 - f19+f20+p39 → C6
 - f07+f10+f11+p28+p29+p30 → C7
 - f12+p39 → C8
@@ -314,4 +314,5 @@
 - f21+f22+p19+p34+p35+p11 → C10
 - f14+f15+f25+f26+f27+p20+p21 → C11
 - f30+p11+p13+p37 → C12
+- 合计：上列 12 行共 71 条候选出处引用（各单元 `canonical_sources` 条数之和，去重后为 65 个不同候选 id）
 - 未被上述能力吸收的案例（cases.md）作为 A1 素材保留；术语（glossary.md）进入 GLOSSARY。

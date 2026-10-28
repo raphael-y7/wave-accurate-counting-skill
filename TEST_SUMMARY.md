@@ -1,7 +1,7 @@
 # Stage 4 压力测试摘要
 
 > 本文件汇总《精准数浪》能力包的阶段 4（触发与执行压力测试）材料与结论。
-> 数据来源：归档 `审计过程/流水线与测试/test-prompts.json`、`test-prompts-per-skill/`、`test-results.md`、`审计过程/PIPELINE_STATE.md`，以及本仓库现有 `evals/` 与各 skill 目录。
+> 数据来源：归档 `审计过程/流水线与测试/test-prompts.json`、`test-prompts-per-skill/`、`test-results.md`、`审计过程/PIPELINE_STATE.md`，以及本仓库现有的 `single/`、`pack/` 与各 skill 目录。
 
 ## 测试范围
 
@@ -9,13 +9,14 @@
   - `single/` 1 个：`wave-accurate-counting-skill`（单入口，内含 12 张能力卡的路由与 references）
   - `pack/` 8 个：7 个晋级能力（`jingzhun-wave-levels-skill`、`jingzhun-end-conditions-skill`、`jingzhun-top-capture-skill`、`jingzhun-bottom-capture-skill`、`jingzhun-trend-position-skill`、`jingzhun-multi-timeframe-skill`、`jingzhun-trade-plan-skill`）+ 1 个路由入口 `wave-accurate-counting-skill-router`
   - 能力卡共 12 张：7 张 promoted 独立成 skill；另 5 张（模式库、浪中浪、三角形、组合结构、延长浪）随 router 的 `references/capabilities/` 分发
-- **test-prompts 文件：10 个**
-  - suite 级 2 份（内容相同）：`evals/test-prompts.json`、`single/wave-accurate-counting-skill/test-prompts.json`，各 51 条
-  - 每 skill 1 份共 8 份：`pack/<skill>/test-prompts.json`，合计 48 条
-  - 去重后用例总数 **99 条**（suite 51 + per-skill 48；同一批用例在不同目录各有副本，未重复计入）
-- **覆盖类型**
-  - suite 级：`should_trigger` 25 / `should_not_trigger` 18 / `edge_case` 8
-  - per-skill：`should_trigger` 25 / `should_not_trigger` 16 / `edge_case` 7
+- **test-prompts 文件：9 个（仓库内实测）**
+  - `single/wave-accurate-counting-skill/test-prompts.json` 1 份：51 条，入口级完整 suite
+  - `pack/wave-accurate-counting-skill-router/test-prompts.json` 1 份：10 条，路由入口级
+  - `pack/jingzhun-*/test-prompts.json` 7 份：合计 38 条，跟各晋级 skill 走
+  - 用例总数 **99 条**（51 + 10 + 38，各文件按自身内容统计，未做去重合并）
+- **覆盖类型（99 条合计）**
+  - 全仓库：`should_trigger` 50 / `should_not_trigger` 34 / `edge_case` 15 / `output_case` 0
+  - 按来源拆分：suite 25 / 18 / 8；router 4 / 6 / 0；per-skill 21 / 10 / 7
   - `output_case`：**JSON 中无该类型条目**。执行输出用例以 24 份独立输出文件（归档 `流水线与测试/outputs/c1-normal.md … c12-boundary.md`）记录，未并入 test-prompts.json
 - 触发用例同时覆盖“该触发”与“诱饵（不该触发）”两类，并针对近邻能力设置了跨 skill 混淆用例（tp-2 / tp-6 / bc-6）
 
@@ -23,7 +24,7 @@
 
 | 检查项 | 方法 | 结果 |
 |---|---|---|
-| JSON 可解析性 | 对仓库内全部 `test-prompts.json` 执行 `json.load` | 10/10 通过，无语法错误 |
+| JSON 可解析性 | 对仓库内全部 `test-prompts.json` 逐个执行 `json.load` | 9/9 通过，无语法错误 |
 | frontmatter | 检查 9 个 `SKILL.md` 是否以 `---` 开头并含 `name` / `description` | 9/9 通过 |
 | 六段完整性 | 检查 `bundle/cards/`、`single/`、`pack/` 下能力卡是否含 R / I / A1 / A2 / E / B 六段 | 36 份卡片全部齐全，0 缺段 |
 | 用例字段 | 每条用例含 `id` / `type` / `prompt`，suite 级另含 `expected_choice` | 符合 |
@@ -32,7 +33,8 @@
 ## 结果
 
 - **skills：9**
-- **test_json：10**
+- **test_json：9**
+- **用例：99**（should_trigger 50 / should_not_trigger 34 / edge_case 15 / output_case 0）
 - **通过情况**（摘自归档 `test-results.md`，测试时间 2026-10-17，宿主/模型 ZCode / deepseek-flash）：
   - 触发测试：**51/51**。首轮 48/51，3 条（tp-2、tp-6、bc-6）因 description 边界重叠误选，修订 description 后重测 3/3；其余 48 条未改动，作为回归保留
   - 诱饵容错：18 条 `should_not_trigger` 全部未误触发被测入口
