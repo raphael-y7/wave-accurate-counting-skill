@@ -246,4 +246,5 @@ Every numeric criterion in the book (the nine wave degrees, the 1–2 point tech
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT)
+[MIT](./LICENSE)
+
