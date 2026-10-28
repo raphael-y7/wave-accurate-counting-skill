@@ -1,0 +1,30 @@
+{
+  "skill": "jingzhun-multi-timeframe-skill",
+  "version": "0.1.0",
+  "test_cases": [
+    {
+      "id": "mt-1",
+      "type": "should_trigger",
+      "prompt": "日线看多周线看空，听谁的？",
+      "notes": "多周期冲突"
+    },
+    {
+      "id": "mt-2",
+      "type": "should_trigger",
+      "prompt": "支撑位和阻力位怎么用浪的起止点找？",
+      "notes": "支撑阻力"
+    },
+    {
+      "id": "mt-3",
+      "type": "should_trigger",
+      "prompt": "小级别突破了，但大级别还是调整，能追吗？",
+      "notes": "级别一致性"
+    },
+    {
+      "id": "mt-6",
+      "type": "edge_case",
+      "prompt": "大级别也没确认，小级别信号还能用吗？",
+      "notes": "大级别未确立"
+    }
+  ]
+}
