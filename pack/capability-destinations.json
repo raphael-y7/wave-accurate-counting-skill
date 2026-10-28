@@ -23,19 +23,19 @@
     },
     "cap.wave-accurate-counting-skill.correction-pattern-library": {
       "served_by": "wave-accurate-counting-skill-router",
-      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-correction-patterns-skill.md"
+      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-correction-patterns.md"
     },
     "cap.wave-accurate-counting-skill.complex-correction-wave": {
       "served_by": "wave-accurate-counting-skill-router",
-      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-complex-correction-skill.md"
+      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-complex-correction.md"
     },
     "cap.wave-accurate-counting-skill.triangle-trading": {
       "served_by": "wave-accurate-counting-skill-router",
-      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-triangle-trading-skill.md"
+      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-triangle-trading.md"
     },
     "cap.wave-accurate-counting-skill.combination-structure": {
       "served_by": "wave-accurate-counting-skill-router",
-      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-combination-structure-skill.md"
+      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-combination-structure.md"
     },
     "cap.wave-accurate-counting-skill.trend-position-sizing": {
       "promoted_to": "jingzhun-trend-position-skill",
@@ -47,7 +47,7 @@
     },
     "cap.wave-accurate-counting-skill.horizon-extension-strategy": {
       "served_by": "wave-accurate-counting-skill-router",
-      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-horizon-extension-skill.md"
+      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-horizon-extension.md"
     },
     "cap.wave-accurate-counting-skill.trade-plan-builder": {
       "promoted_to": "jingzhun-trade-plan-skill",

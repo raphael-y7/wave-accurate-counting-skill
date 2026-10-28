@@ -1,0 +1,314 @@
+schema_version: 1
+bundle_id: bundle.wave-accurate-counting-skill
+book:
+  title: 精准数浪——波浪理论内部结构分析及买卖点位把握
+  author: 陈晓东
+  source_pack: G:/虚拟机共享文件夹/投资/陈晓东精准数浪（387页PNG，逐页视觉转写）
+  baseline_tag: wave-accurate-counting-skill-2016-cn
+entry:
+  name: wave-accurate-counting-skill
+  description: |
+    陈晓东《精准数浪》内部结构分析体系的单一入口。先定浪级与结构，再判“具备结束条件/确立结束”，在推动浪顶部或调整浪底部用极值外1～2点技术止损入场，目标为下一级结构结束，并按结构确定性配仓位。
+    触发：用户提到数浪、浪级、内部结构、推动浪/调整浪、剪刀式/镰刀式/双节棍式、具备结束条件、浪中浪、顶底捕捉、波浪理论买卖点、技术止损、仓位控制，或要求用波浪结构分析某只股票/指数/期货/黄金。
+    不适用：纯基本面、消息面、资金流、盘口/高频；无K线数据或流动性极差的品种；要求保证收益或替代个人决策的请求。
+  core_principles:
+    - 先级别后结构，先大级别后小级别；级别错则买卖点、止损、目标全错。
+    - 具备结束条件≠确立结束：前者只可试单，后者才加仓。
+    - 买卖点在结构结束临界点；技术止损放所交易浪极值外1～2点。
+    - 目标位是下一级结构的结束条件，不用固定盈亏比猜目标。
+    - 结构确定性决定仓位；确定性不足只轻仓、试单或回避。
+    - 调整结构会演变，必须用关键点突破逐一排除替代分解。
+    - 小级别服从大级别；结构变则支撑阻力、止损与仓位同步迁移。
+  out_of_scope:
+    - 不含基本面、消息面、资金流、行业与估值分析。
+    - 不预测无结构的随机波动，不提供收益保证。
+    - 不替代用户的下单决策与风险承受判断。
+    - 不适用于缺乏K线数据或流动性极差的品种。
+  stop_conditions:
+    - 关键点被突破且结构必须重标，原交易计划失效。
+    - 数据不足，无法完成次一级结构细分，级别判定只能标“未确认”。
+    - 找不到技术止损，或技术止损空间大于可预见目标空间。
+    - 同一段走势存在多种等价分解，且无法用关键点突破收敛。
+router_entry:
+  name: wave-accurate-counting-skill-router
+  description: |
+    《精准数浪》来源路由入口：收录逐级数浪、结束条件、顶底捕捉、调整模式库、复杂浪中浪、三角形、组合结构、顺势仓位、多周期一致性、延长浪、交易计划等12张能力卡。
+    触发：用户提到陈晓东、精准数浪、内部结构数浪、剪刀式/镰刀式/双节棍式、浪中浪、三角形买卖点、组合结构、延长浪、支撑阻力迁移等“模式识别/进阶结构”问题，先由本入口分派到对应能力卡。
+    不适用：明确要求单一动作（如只数浪、只判结束、只做计划）时，优先直接调用对应的晋级 Skill，避免路由层重复触发。
+promotion_budget: 8
+capabilities:
+- capability_id: cap.wave-accurate-counting-skill.wave-level-parser
+  revision: 1
+  status: active
+  slug: jingzhun-wave-levels-skill
+  title: 逐级数浪与级别定位
+  importance: critical
+  importance_rationale: 对应 task-01/task-02/task-14；级别判定是全部买卖点、止损与目标的前置坐标，错级别会连带错方向与错止损。
+  one_liner: 先定级别与结构，再谈方向：五浪走完升级，1/3/5必须次一级仍是五浪，锯齿允许缺陷。
+  intents: [判断当前浪级, 数浪, 区分推动浪与锯齿, 判断基础浪与细分浪]
+  keywords: [浪级, 数浪, 内部结构, 推动浪, 调整浪, 锯齿, 基础浪, 细分浪, wave degree, wave counting, impulse, zigzag]
+  also_read: [cap.wave-accurate-counting-skill.end-condition-diagnosis, cap.wave-accurate-counting-skill.correction-pattern-library, cap.wave-accurate-counting-skill.multi-timeframe-levels]
+  card: cards/jingzhun-wave-levels-skill.md
+  frontmatter:
+    description: |
+      当用户要“数浪/判断现在第几浪/这是推动浪还是锯齿/周线日线级别对不上”时使用。流程：九级浪级定位→基础浪与细分浪→五浪走完升一级→1、3、5在次一级各为完整五浪；锯齿允许缺陷。输出级别、结构、下一步候选。不适用于找具体买卖点、判断结束条件或配仓位。
+    tags: [wave-counting, degree, structure]
+  source_evidence:
+    - {source_id: wave-accurate-counting-skill, location: 第一章第一节（表1-1）、第一章第六节、第五章第二节八}
+  promotion:
+    destination: promoted
+    gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+    notes: 所有分析的前置层，独立意图与契约清晰，首选晋级。
+
+- capability_id: cap.wave-accurate-counting-skill.end-condition-diagnosis
+  revision: 1
+  status: active
+  slug: jingzhun-end-conditions-skill
+  title: 具备结束条件与确立结束判定
+  importance: critical
+  importance_rationale: 对应 task-04/task-11；把“抄底/逃顶”拆成试单与加仓两档，直接决定是否重仓与止损位置。
+  one_liner: 具备结束条件只可试单，确立结束才加仓；a0上破c高点/上破a起点/后市结构验证三选二。
+  intents: [判断调整是否结束, 判断某段走完没有, 区分具备结束条件与确立结束, 判断结束点是否下移]
+  keywords: [具备结束条件, 确立结束, 结束点下移, b浪分解, 调整结束, end condition, confirmation]
+  also_read: [cap.wave-accurate-counting-skill.wave-level-parser, cap.wave-accurate-counting-skill.impulse-top-capture, cap.wave-accurate-counting-skill.correction-bottom-capture]
+  card: cards/jingzhun-end-conditions-skill.md
+  frontmatter:
+    description: |
+      当用户问“这段走完了吗/能不能进/为什么结束了还在跌/止损放哪”时使用。先判“具备结束条件”（可结束但不保证），再用 a0 上破 c 浪高点、上破 a 浪起点、后市本应结构验证三选二，确认“确立结束”；未确认则结束点下移。输出三档动作：观察/试单/加仓。不负责找顶底的窄幅区域，也不负责仓位比例。
+    tags: [end-condition, confirmation, timing]
+  source_evidence:
+    - {source_id: wave-accurate-counting-skill, location: 第一章第五节、第二章第四节、第二章第十节、第五章第二节七}
+  promotion:
+    destination: promoted
+    gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+    notes: 交易触发的核心判据，独立意图强，晋级。
+
+- capability_id: cap.wave-accurate-counting-skill.impulse-top-capture
+  revision: 1
+  status: active
+  slug: jingzhun-top-capture-skill
+  title: 推动浪顶部捕捉（含延长浪）
+  importance: high
+  importance_rationale: 对应 task-05/task-13/task-15；直接服务逃顶、减仓与做空，书中 6124 与 5178 案例完整。
+  one_liner: 把推动浪顶部逐级锁到最小浪级的最后一浪，止损极值外1～2点，延长浪则顶部上移。
+  intents: [找推动浪顶部, 判断哪里逃顶, 判断五浪是否走完, 判断是不是延长浪, 给出顶部区域的止损与目标, 处理延长浪]
+  keywords: [顶部捕捉, 逃顶, 推动浪, 延长浪, 五浪, top, extension, 6124点]
+  also_read: [cap.wave-accurate-counting-skill.wave-level-parser, cap.wave-accurate-counting-skill.end-condition-diagnosis, cap.wave-accurate-counting-skill.trend-position-sizing, cap.wave-accurate-counting-skill.horizon-extension-strategy]
+  card: cards/jingzhun-top-capture-skill.md
+  frontmatter:
+    description: |
+      当用户问“哪里逃顶/这个五浪走完了吗/要不要减仓或做空/延长浪还能拿吗/这是不是延长浪”时使用；也包含该顶部的止损与目标。步骤：定推动浪起点→逐级拆到 {v} 的微浪(v)/亚微浪→在最小级别结束条件处做空或出局；止损放高点外1～2点；目标下一级调整结束；若同级推动浪上破前高则确立延长浪，顶部上移。不做底部抄底，不配仓位。
+    tags: [top-capture, impulse, extension]
+  source_evidence:
+    - {source_id: wave-accurate-counting-skill, location: 第一章第五节一、第一章第九至十一节、第五章第二节五}
+  promotion:
+    destination: promoted
+    gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+    notes: 高频卖出场景，契约清晰，晋级。
+
+- capability_id: cap.wave-accurate-counting-skill.correction-bottom-capture
+  revision: 1
+  status: active
+  slug: jingzhun-bottom-capture-skill
+  title: 调整浪底部捕捉（含 c 浪交易）
+  importance: high
+  importance_rationale: 对应 task-06/task-09/task-15；直接服务抄底与做多，包含 b 浪再分解导致底部下移的关键分支。
+  one_liner: 把调整浪底部逐级缩到 c 浪的微浪(c)/亚微浪 c，止损极值下1～2点，b 浪再分解则底部下移。
+  intents: [找调整浪底部, 判断能否抄底, 判断 c 浪是否结束, 跌到前低附近能否先轻仓, 处理 b 浪再分解]
+  keywords: [底部捕捉, 抄底, 调整浪, c浪, b浪分解, bottom, correction]
+  also_read: [cap.wave-accurate-counting-skill.wave-level-parser, cap.wave-accurate-counting-skill.end-condition-diagnosis, cap.wave-accurate-counting-skill.trend-position-sizing, cap.wave-accurate-counting-skill.horizon-extension-strategy]
+  card: cards/jingzhun-bottom-capture-skill.md
+  frontmatter:
+    description: |
+      当用户问“这里能抄底吗/调整结束了吗/b 浪还没走完吧/目标看到哪/跌到前低附近能否先轻仓”时使用。步骤：由调整级别推出内部三浪→把底部逐级缩到 {c} 的微浪(c)/亚微浪 c→在最小 c 浪具备/确立结束时做多；止损 c 浪低点下1～2点；目标下一推动浪结束；若 b 浪再分解，底部下移到 c3。不做顶部，不配仓位。
+    tags: [bottom-capture, correction, c-wave]
+  source_evidence:
+    - {source_id: wave-accurate-counting-skill, location: 第一章第五节二、第四章第六节二、第五章第二节七}
+  promotion:
+    destination: promoted
+    gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+    notes: 高频买入场景，契约清晰，晋级。
+
+- capability_id: cap.wave-accurate-counting-skill.correction-pattern-library
+  revision: 1
+  status: active
+  slug: jingzhun-correction-patterns
+  title: 调整结构模式库（四模式+剪刀/镰刀/双节棍+强弱）
+  importance: high
+  importance_rationale: 对应 task-02/task-03/task-15；是全书模式库的核心，决定关键点与买卖点位置。
+  one_liner: 先归四基础模式，再识别剪刀/镰刀/双节棍；用 b 浪位置与 0.382/0.5/0.618 判强弱。
+  intents: [识别调整结构, 区分剪刀式镰刀式双节棍式, 判断调整强弱, 找调整结构关键点]
+  keywords: [剪刀式, 镰刀式, 双节棍式, 3-3-3, 5-3-5, 调整结构, correction pattern, scissors, scythe, nunchaku]
+  also_read: [cap.wave-accurate-counting-skill.wave-level-parser, cap.wave-accurate-counting-skill.complex-correction-wave, cap.wave-accurate-counting-skill.triangle-trading, cap.wave-accurate-counting-skill.combination-structure]
+  card: cards/jingzhun-correction-patterns-skill.md
+  frontmatter:
+    description: |
+      当用户问“这是什么调整结构/剪刀式和镰刀式怎么分/b 浪怎么老走不完/调整算强还是弱”时使用。先把调整归入本体三浪、5-3-5、3-3-5、3-3-3 四模式，再按 b 浪分解方式与 c 浪位置识别剪刀/镰刀/双节棍，输出模式标签、关键点与强弱档。不处理复杂嵌套（浪中浪）、三角形与组合结构。
+    tags: [correction-pattern, taxonomy, key-points]
+  source_evidence:
+    - {source_id: wave-accurate-counting-skill, location: 第一章第二至四节、第二章第一节、第二章第九至十节}
+  promotion:
+    destination: router
+    gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+    notes: 五条判据均通过，但可发现入口预算为8；与数浪/结束条件触发边界较近，保留为 router 内能力卡。
+
+- capability_id: cap.wave-accurate-counting-skill.complex-correction-wave
+  revision: 1
+  status: active
+  slug: jingzhun-complex-correction
+  title: 复杂调整与浪中浪
+  importance: medium
+  importance_rationale: 对应 task-10/task-11；属于进阶嵌套结构，误判会在单层结构里提前重仓。
+  one_liner: 浪中浪只在两个复杂结构关键点同时被突破时追单；只破一个关键点不重仓。
+  intents: [识别浪中浪, 判断双复杂结构, 找双关键点共振, 处理三组三浪]
+  keywords: [浪中浪, 双复杂结构, 双节棍, 关键点共振, wave within wave, complex correction]
+  also_read: [cap.wave-accurate-counting-skill.correction-pattern-library, cap.wave-accurate-counting-skill.end-condition-diagnosis, cap.wave-accurate-counting-skill.combination-structure]
+  card: cards/jingzhun-complex-correction-skill.md
+  frontmatter:
+    description: |
+      当用户问“这是不是浪中浪/为什么跌了又跌/两个结构的关键点在哪/能不能加仓”时使用。识别外层复杂调整与内层复杂结构；只有当一浪或三浪同时下破两个关键点时，才判双复杂结构共振并追空/加仓；只破一个关键点降为单复杂结构、不重仓。不处理单层模式分类、三角形与组合结构。
+    tags: [wave-within-wave, complex, resonance]
+  source_evidence:
+    - {source_id: wave-accurate-counting-skill, location: 第三章第一至九节、第二章第九节}
+  promotion:
+    destination: router
+    gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: false, independent_eval: true}
+    notes: 进阶低频场景，与模式库近邻；保留 router 内卡，后续用户显式请求可 split-on-evidence。
+
+- capability_id: cap.wave-accurate-counting-skill.triangle-trading
+  revision: 1
+  status: active
+  slug: jingzhun-triangle-trading
+  title: 三角形识别、方向/幅度与两段式交易
+  importance: high
+  importance_rationale: 对应 task-07/task-09/task-15；震荡市高频场景，书中给出方向、幅度、两段式入场与假突破边界。
+  one_liner: 三角形方向跟随 b 浪；两个时机=完整 b 浪结束与颈线突破；幅度看对应 c 浪结束。
+  intents: [判断三角形突破方向, 三角形怎么交易, 三角形目标位, 识别引导/终结倾斜三角形]
+  keywords: [三角形, 引导倾斜三角形, 终结倾斜三角形, 突破, 颈线, triangle, diagonal, breakout]
+  also_read: [cap.wave-accurate-counting-skill.wave-level-parser, cap.wave-accurate-counting-skill.end-condition-diagnosis, cap.wave-accurate-counting-skill.correction-pattern-library, cap.wave-accurate-counting-skill.combination-structure]
+  card: cards/jingzhun-triangle-trading-skill.md
+  frontmatter:
+    description: |
+      当用户问“三角形往哪边破/突破能追吗/目标多少/这是引导还是终结”时使用。先判位置与内部结构（引导 5-3-5-3-5、终结 3-3-3-3-3），方向跟随 b 浪（a/c 反方向），幅度以对应 c 浪或同级一浪结束为准；时机一在完整 b 浪结束，时机二在颈线突破；止损放突破后 c 浪起点外1～2点。不处理普通调整模式命名与仓位比例。
+    tags: [triangle, breakout, entry-timing]
+  source_evidence:
+    - {source_id: wave-accurate-counting-skill, location: 第一章第八节、第十二至十五节、第二章第八节}
+  promotion:
+    destination: router
+    gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+    notes: 五条判据均通过，但入口预算已满；保留 router 内卡。
+
+- capability_id: cap.wave-accurate-counting-skill.combination-structure
+  revision: 1
+  status: active
+  slug: jingzhun-combination-structure
+  title: 组合结构的形成、演变与三种未来
+  importance: medium
+  importance_rationale: 对应 task-08/task-11；横盘蓄势核心，组合/移位规则复杂，适合作为进阶能力卡。
+  one_liner: 组合结构按 a/b/c 三组三浪合并与移位；c1/c3/c5 做多，c2/c4 短空，c 结束抓底。
+  intents: [识别组合结构, 判断横盘蓄势, 处理组合结构移位, 判断组合结束后的三种未来]
+  keywords: [组合结构, 蓄势, 组合a, 组合b, 组合c, 移位, combination, X-wave]
+  also_read: [cap.wave-accurate-counting-skill.wave-level-parser, cap.wave-accurate-counting-skill.correction-pattern-library, cap.wave-accurate-counting-skill.end-condition-diagnosis]
+  card: cards/jingzhun-combination-structure-skill.md
+  frontmatter:
+    description: |
+      当用户问“横盘这么久是在蓄势吗/这是组合结构吗/c 浪怎么一次次结束又跌/什么时候突破”时使用。按 a1b1c1→组合a、a2b2c2→组合b、a3b3c3→组合c 合并；X 浪必须是同级别完整三浪；c1/c3/c5 结束做多，c2/c4 反弹结束短空；组合结束后用关键点排除“推动浪/再组合/b 浪再分解”三种未来。不处理单层模式、三角形与浪中浪。
+    tags: [combination, accumulation, X-wave]
+  source_evidence:
+    - {source_id: wave-accurate-counting-skill, location: 第一章第十六节、第二章第九节、第五章第二节}
+  promotion:
+    destination: router
+    gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: false, independent_eval: true}
+    notes: 进阶结构，调用频率低于晋级项；保留 router 内卡。
+
+- capability_id: cap.wave-accurate-counting-skill.trend-position-sizing
+  revision: 1
+  status: active
+  slug: jingzhun-trend-position-skill
+  title: 顺势四分法与仓位/确定性管理
+  importance: critical
+  importance_rationale: 对应 task-09/task-11/task-16；“看对却亏钱”多由仓位造成，书中给出仓位分级与低风险重仓前提。
+  one_liner: 先问顺哪种势，再按确定性与止损距离配仓位；止损空间大于目标空间就不做。
+  intents: [判断该重仓还是轻仓, 判断能否加仓, 判断顺哪种势, 评估确定性]
+  keywords: [顺势而为, 仓位控制, 重仓, 轻仓, 确定性, position sizing, risk-reward]
+  also_read: [cap.wave-accurate-counting-skill.impulse-top-capture, cap.wave-accurate-counting-skill.correction-bottom-capture, cap.wave-accurate-counting-skill.multi-timeframe-levels, cap.wave-accurate-counting-skill.trade-plan-builder]
+  card: cards/jingzhun-trend-position-skill.md
+  frontmatter:
+    description: |
+      当用户问“该重仓还是轻仓/这个位置能加仓吗/止损太远怎么办/确定性高不高”时使用；不判断具体顶底位置能否试单（交顶底捕捉）。先按推动浪/调整/上倾/反弹四分法定“顺哪种势”，再按已排除的替代分解评估确定性，套仓位档（杠杆5-10/10-20/20-30%，股票30-50%/可满）；低风险重仓需两级推动浪验证且止损极近；止损空间大于目标空间则不做。不负责具体买卖点。
+    tags: [position-sizing, trend-following, certainty]
+  source_evidence:
+    - {source_id: wave-accurate-counting-skill, location: 第一章第十七节、第二章第九节、第四章第五节、第五章第一节}
+  promotion:
+    destination: promoted
+    gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+    notes: 跨场景复用高，直接决定风险，晋级。
+
+- capability_id: cap.wave-accurate-counting-skill.multi-timeframe-levels
+  revision: 1
+  status: active
+  slug: jingzhun-multi-timeframe-skill
+  title: 大小级别一致性与支撑阻力/止损迁移
+  importance: high
+  importance_rationale: 对应 task-12/task-13/task-15；解决多周期冲突，防止小级别逆大级别。
+  one_liner: 小级别服从大级别；浪的起止点就是支撑阻力，结构变则止损与仓位同步迁移。
+  intents: [处理日线周线冲突, 找支撑阻力, 判断止损是否随结构移动, 判断小级别突破能否追]
+  keywords: [大小级别, 多周期, 支撑阻力, 止损迁移, 级别一致性, multi-timeframe, support resistance]
+  also_read: [cap.wave-accurate-counting-skill.wave-level-parser, cap.wave-accurate-counting-skill.trend-position-sizing, cap.wave-accurate-counting-skill.horizon-extension-strategy, cap.wave-accurate-counting-skill.trade-plan-builder]
+  card: cards/jingzhun-multi-timeframe-skill.md
+  frontmatter:
+    description: |
+      当用户问“日线看多周线看空听谁的/支撑位在哪/止损要跟着结构移吗/小级别突破了能追吗”时使用。先定大级别方向与浪段，再把小级别结构放入大级别解释；小级别与大盘冲突时服从大级别；用浪的起点/终点作支撑阻力，结构演变则阻力位、止损、仓位同步迁移。不负责结构模式命名与仓位比例。
+    tags: [multi-timeframe, support-resistance, stop-loss]
+  source_evidence:
+    - {source_id: wave-accurate-counting-skill, location: 第四章第三、四节、全书止损规则}
+  promotion:
+    destination: promoted
+    gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+    notes: 多周期冲突是高频问题，晋级。
+
+- capability_id: cap.wave-accurate-counting-skill.horizon-extension-strategy
+  revision: 1
+  status: active
+  slug: jingzhun-horizon-extension
+  title: 中长线/波段/短线策略与延长浪盈利管理
+  importance: medium
+  importance_rationale: 对应 task-13/task-05/task-06；解决持仓周期与延长浪目标管理，属于策略层进阶。
+  one_liner: 按推动浪级别选周期；延长浪先设保底目标，确认后再持到延长浪结束。
+  intents: [选择中长线还是短线, 处理延长浪, 设置保底与延长目标, 结构失败反手]
+  keywords: [中长线, 波段, 短线, 延长浪, 保底目标, 反手, horizon, extension]
+  also_read: [cap.wave-accurate-counting-skill.impulse-top-capture, cap.wave-accurate-counting-skill.correction-bottom-capture, cap.wave-accurate-counting-skill.trend-position-sizing, cap.wave-accurate-counting-skill.trade-plan-builder]
+  card: cards/jingzhun-horizon-extension-skill.md
+  frontmatter:
+    description: |
+      当用户问“这笔拿中长线还是短线/延长浪还能拿吗/先出还是等/目标要不要上移”时使用。按推动浪级别匹配持仓周期（亚微/微→短线，小→波段，中/大→中长线）；延长浪先设保底目标（同级三浪回调 B 浪反弹结束），同级推动浪上破前高确认延长后才持到延长浪结束；结构失败按反手流程。不负责单笔入场点与仓位比例。
+    tags: [horizon, extension, profit-management]
+  source_evidence:
+    - {source_id: wave-accurate-counting-skill, location: 第一章第十七节、第五章第二节一至五、第四章第六节}
+  promotion:
+    destination: router
+    gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+    notes: 五条判据通过，但入口预算已满；保留 router 内卡。
+
+- capability_id: cap.wave-accurate-counting-skill.trade-plan-builder
+  revision: 1
+  status: active
+  slug: jingzhun-trade-plan-skill
+  title: 交易计划整合
+  importance: critical
+  importance_rationale: 对应 task-15/task-16；用户最终需要一份可执行、可复核的计划，本能力把分散规则整合为模板。
+  one_liner: 按浪级→结构→势→入场→止损→目标→仓位→失效八步生成可复核交易计划。
+  intents: [生成交易计划, 制定买卖策略, 计算止损目标仓位, 复盘交易计划]
+  keywords: [交易计划, 入场, 止损, 目标位, 仓位, 失效条件, trading plan]
+  also_read: [cap.wave-accurate-counting-skill.wave-level-parser, cap.wave-accurate-counting-skill.end-condition-diagnosis, cap.wave-accurate-counting-skill.trend-position-sizing, cap.wave-accurate-counting-skill.multi-timeframe-levels, cap.wave-accurate-counting-skill.horizon-extension-strategy]
+  card: cards/jingzhun-trade-plan-skill.md
+  frontmatter:
+    description: |
+      当用户说“帮我做一份交易计划/现在该不该买卖/止损目标仓位怎么定/这笔交易风险收益比如何”时使用；仅当需要完整、多要素整合时使用，若只问某个顶部的止损/目标，优先顶部捕捉。按八步生成计划表：浪级定位→结构判定→定势→入场（具备结束条件试单/确立结束加仓）→止损（极值外1～2点）→目标（下一级结构结束）→仓位（按确定性与止损距离）→失效（关键点破位/结构失败）。多解时标“待确认/轻仓”，无技术止损则不做。具体细节调用兄弟能力，但模板自身完整。
+    tags: [trading-plan, integration, decision]
+  source_evidence:
+    - {source_id: wave-accurate-counting-skill, location: 第五章开篇及第一节、第二节、全书交易示例}
+  promotion:
+    destination: promoted
+    gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+    notes: 最终交付形态，独立意图强，晋级。
