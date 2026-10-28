@@ -1,0 +1,36 @@
+{
+  "skill": "jingzhun-end-conditions-skill",
+  "version": "0.1.0",
+  "test_cases": [
+    {
+      "id": "ec-1",
+      "type": "should_trigger",
+      "prompt": "这段调整走完了吗？现在能不能进？",
+      "notes": "结束判定"
+    },
+    {
+      "id": "ec-2",
+      "type": "should_trigger",
+      "prompt": "具备结束条件和确立结束到底有什么区别？",
+      "notes": "概念判定"
+    },
+    {
+      "id": "ec-3",
+      "type": "should_trigger",
+      "prompt": "为什么明明调整结束了还在跌？",
+      "notes": "结束点下移"
+    },
+    {
+      "id": "ec-6",
+      "type": "edge_case",
+      "prompt": "c浪三浪已经走完，但还没上破c浪高点，算结束了吗？",
+      "notes": "具备≠确立"
+    },
+    {
+      "id": "tr-4",
+      "type": "should_not_trigger",
+      "prompt": "只帮我判断这段调整结束没有",
+      "notes": "近邻：结束判定"
+    }
+  ]
+}

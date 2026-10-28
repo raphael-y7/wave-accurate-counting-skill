@@ -139,6 +139,14 @@ wave-accurate-counting-skill/
 ├── INDEX.md                       ← skill 地图：能力总表 + 依赖关系 + 加载顺序
 ├── BOOK_OVERVIEW.md               ← 整书理解（Adler 四步拆解，阶段 0 产出）
 ├── verified.md                    ← 12 个规范单元的三重验证结论
+├── TEST_SUMMARY.md                ← Stage 4 压力测试摘要（范围 / 结构检查 / 结果）
+├── CANGJIE_ADAPTATION.md          ← 仓颉适配说明（文本状态 / 蒸馏目标 / 证据规则 / 边界）
+├── candidates/                    ← 阶段 1 五提取器候选池（原文候选，未晋级）
+│   ├── cases.md                   ← 案例 41 条
+│   ├── counter-examples.md        ← 反例 30 条
+│   ├── frameworks.md              ← 框架 30 条
+│   ├── glossary.md                ← 术语 39 条
+│   └── principles.md              ← 原则 40 条
 ├── bundle/                        ← 审计用原始 Bundle，可复核 verified.yaml 与能力卡原文
 │   ├── verified.yaml              ← 12 张能力卡的规范定义与 promoted / router 去向
 │   ├── cards/
@@ -161,6 +169,7 @@ wave-accurate-counting-skill/
 │   └── wave-accurate-counting-skill/
 │       ├── BUILD_MANIFEST.json    ← 编译清单与文件哈希
 │       ├── SKILL.md               ← 入口：触发条件 + 路由表 + 加载规则
+│       ├── test-prompts.json      ← 51 条 suite 级触发 / 近邻 / 边界用例
 │       └── references/
 │           ├── capability-index.md  ← 完整意图与关键词索引
 │           ├── cheatsheet.md      ← 决策规则速查
@@ -183,21 +192,29 @@ wave-accurate-counting-skill/
 │   ├── BUILD_MANIFEST.json
 │   ├── capability-destinations.json
 │   ├── jingzhun-bottom-capture-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 6 条本 skill 触发 / 近邻 / 边界用例
 │   ├── jingzhun-end-conditions-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 5 条
 │   ├── jingzhun-multi-timeframe-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 4 条
 │   ├── jingzhun-top-capture-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 7 条
 │   ├── jingzhun-trade-plan-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 4 条
 │   ├── jingzhun-trend-position-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 5 条
 │   ├── jingzhun-wave-levels-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 7 条
 │   └── wave-accurate-counting-skill-router/
 │       ├── SKILL.md               ← 来源路由入口
+│       ├── test-prompts.json      ← 10 条 router 触发 / 近邻用例
 │       └── references/
 │           ├── capability-index.md
 │           ├── cheatsheet.md

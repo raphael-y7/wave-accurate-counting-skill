@@ -139,6 +139,14 @@ wave-accurate-counting-skill/
 ├── INDEX.md                       ← skill map: capability table + dependencies + loading order
 ├── BOOK_OVERVIEW.md               ← whole-book comprehension (Adler four-step, stage 0 output)
 ├── verified.md                    ← triple-verification conclusions for the 12 canonical units
+├── TEST_SUMMARY.md                ← stage 4 stress-test summary (scope / structure checks / results)
+├── CANGJIE_ADAPTATION.md          ← cangjie adaptation note (text status / goals / evidence rules / limits)
+├── candidates/                    ← stage 1 extractor candidate pool (raw, not promoted)
+│   ├── cases.md                   ← 41 cases
+│   ├── counter-examples.md        ← 30 counter-examples
+│   ├── frameworks.md              ← 30 frameworks
+│   ├── glossary.md                ← 39 glossary terms
+│   └── principles.md              ← 40 principles
 ├── bundle/                        ← the audited source bundle, so verified.yaml and cards can be checked
 │   ├── verified.yaml              ← canonical definitions of the 12 cards with promoted / router destinations
 │   ├── cards/
@@ -161,6 +169,7 @@ wave-accurate-counting-skill/
 │   └── wave-accurate-counting-skill/
 │       ├── BUILD_MANIFEST.json    ← build manifest and file hashes
 │       ├── SKILL.md               ← entry: triggers + routing table + loading rules
+│       ├── test-prompts.json      ← 51 suite-level trigger / near-miss / boundary cases
 │       └── references/
 │           ├── capability-index.md  ← full intent and keyword index
 │           ├── cheatsheet.md      ← decision-rule quick reference
@@ -183,21 +192,29 @@ wave-accurate-counting-skill/
 │   ├── BUILD_MANIFEST.json
 │   ├── capability-destinations.json
 │   ├── jingzhun-bottom-capture-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 6 trigger / near-miss / boundary cases
 │   ├── jingzhun-end-conditions-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 5
 │   ├── jingzhun-multi-timeframe-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 4
 │   ├── jingzhun-top-capture-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 7
 │   ├── jingzhun-trade-plan-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 4
 │   ├── jingzhun-trend-position-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 5
 │   ├── jingzhun-wave-levels-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 7
 │   └── wave-accurate-counting-skill-router/
 │       ├── SKILL.md               ← source router entry
+│       ├── test-prompts.json      ← 10 router trigger / near-miss cases
 │       └── references/
 │           ├── capability-index.md
 │           ├── cheatsheet.md

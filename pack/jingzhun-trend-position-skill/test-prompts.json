@@ -1,0 +1,36 @@
+{
+  "skill": "jingzhun-trend-position-skill",
+  "version": "0.1.0",
+  "test_cases": [
+    {
+      "id": "ec-5",
+      "type": "should_not_trigger",
+      "prompt": "这个位置该重仓还是轻仓？",
+      "notes": "近邻：仓位"
+    },
+    {
+      "id": "tps-1",
+      "type": "should_trigger",
+      "prompt": "这个位置该重仓还是轻仓？",
+      "notes": "仓位"
+    },
+    {
+      "id": "tps-2",
+      "type": "should_trigger",
+      "prompt": "确定性高不高，能不能加仓？",
+      "notes": "确定性/加仓"
+    },
+    {
+      "id": "tps-3",
+      "type": "should_trigger",
+      "prompt": "止损空间比目标还大，还做不做？",
+      "notes": "风险回报"
+    },
+    {
+      "id": "tps-6",
+      "type": "edge_case",
+      "prompt": "方向看对了但止损太远，怎么处理？",
+      "notes": "止损空间过大"
+    }
+  ]
+}

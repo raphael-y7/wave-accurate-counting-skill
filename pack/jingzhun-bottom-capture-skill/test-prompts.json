@@ -1,0 +1,42 @@
+{
+  "skill": "jingzhun-bottom-capture-skill",
+  "version": "0.1.0",
+  "test_cases": [
+    {
+      "id": "tp-4",
+      "type": "should_not_trigger",
+      "prompt": "这里能抄底吗？",
+      "notes": "近邻：抄底"
+    },
+    {
+      "id": "bc-1",
+      "type": "should_trigger",
+      "prompt": "这波调整哪里可以抄底？",
+      "notes": "抄底"
+    },
+    {
+      "id": "bc-2",
+      "type": "should_trigger",
+      "prompt": "b浪又分解了，底部是不是要下移？",
+      "notes": "b浪分解"
+    },
+    {
+      "id": "bc-3",
+      "type": "should_trigger",
+      "prompt": "c浪结束没有？能不能做多？",
+      "notes": "c浪交易"
+    },
+    {
+      "id": "bc-6",
+      "type": "edge_case",
+      "prompt": "c浪还没走完，但已经跌到前低附近，能先轻仓吗？",
+      "notes": "提前轻仓"
+    },
+    {
+      "id": "rt-6",
+      "type": "should_not_trigger",
+      "prompt": "这里能抄底吗？",
+      "notes": "晋级项直接触发"
+    }
+  ]
+}
