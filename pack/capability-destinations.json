@@ -1,0 +1,57 @@
+{
+  "generated_by": "cangjie-tools v2.5.0",
+  "bundle_id": "bundle.wave-accurate-counting-skill",
+  "router_entrypoint": "wave-accurate-counting-skill-router",
+  "entrypoint_count": 8,
+  "capability_count": 12,
+  "destinations": {
+    "cap.wave-accurate-counting-skill.wave-level-parser": {
+      "promoted_to": "jingzhun-wave-levels-skill",
+      "router_view": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-wave-levels-skill.md"
+    },
+    "cap.wave-accurate-counting-skill.end-condition-diagnosis": {
+      "promoted_to": "jingzhun-end-conditions-skill",
+      "router_view": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-end-conditions-skill.md"
+    },
+    "cap.wave-accurate-counting-skill.impulse-top-capture": {
+      "promoted_to": "jingzhun-top-capture-skill",
+      "router_view": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-top-capture-skill.md"
+    },
+    "cap.wave-accurate-counting-skill.correction-bottom-capture": {
+      "promoted_to": "jingzhun-bottom-capture-skill",
+      "router_view": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-bottom-capture-skill.md"
+    },
+    "cap.wave-accurate-counting-skill.correction-pattern-library": {
+      "served_by": "wave-accurate-counting-skill-router",
+      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-correction-patterns-skill.md"
+    },
+    "cap.wave-accurate-counting-skill.complex-correction-wave": {
+      "served_by": "wave-accurate-counting-skill-router",
+      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-complex-correction-skill.md"
+    },
+    "cap.wave-accurate-counting-skill.triangle-trading": {
+      "served_by": "wave-accurate-counting-skill-router",
+      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-triangle-trading-skill.md"
+    },
+    "cap.wave-accurate-counting-skill.combination-structure": {
+      "served_by": "wave-accurate-counting-skill-router",
+      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-combination-structure-skill.md"
+    },
+    "cap.wave-accurate-counting-skill.trend-position-sizing": {
+      "promoted_to": "jingzhun-trend-position-skill",
+      "router_view": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-trend-position-skill.md"
+    },
+    "cap.wave-accurate-counting-skill.multi-timeframe-levels": {
+      "promoted_to": "jingzhun-multi-timeframe-skill",
+      "router_view": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-multi-timeframe-skill.md"
+    },
+    "cap.wave-accurate-counting-skill.horizon-extension-strategy": {
+      "served_by": "wave-accurate-counting-skill-router",
+      "card": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-horizon-extension-skill.md"
+    },
+    "cap.wave-accurate-counting-skill.trade-plan-builder": {
+      "promoted_to": "jingzhun-trade-plan-skill",
+      "router_view": "wave-accurate-counting-skill-router/references/capabilities/jingzhun-trade-plan-skill.md"
+    }
+  }
+}

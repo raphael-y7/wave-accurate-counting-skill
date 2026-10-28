@@ -1,0 +1,50 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "capability-destinations.json": "be81809ec5123b7d2d927e9ca636231976a4917d7c1f54773dc95cd047e7376c",
+    "jingzhun-bottom-capture-skill\\SKILL.md": "98ec9733f31bf280b136a3e7cb1ad5af18a3308f12e8e391015062e6eb9392b8",
+    "jingzhun-end-conditions-skill\\SKILL.md": "419175c48703ee4114611a355f30941f01f98100fb7c67ae0322a91780c31816",
+    "jingzhun-multi-timeframe-skill\\SKILL.md": "817b8a8c15a65c631293483524926a6c6941958c5dbd69858ae6bfdd542a1db4",
+    "wave-accurate-counting-skill-router\\references\\capabilities\\jingzhun-bottom-capture-skill.md": "82d096316b83aa6188e1fee17b60bf3cd947ee21be8bafddaef0e469955f7ab0",
+    "wave-accurate-counting-skill-router\\references\\capabilities\\jingzhun-combination-structure.md": "19fc0f3de42f864ff347ae42c4cb6d5d6a4e7625b5fc80e3720bafda6995be34",
+    "wave-accurate-counting-skill-router\\references\\capabilities\\jingzhun-complex-correction.md": "bc662b04d880ebe08c916b5514492f450c35788abfde7025854efff14525165a",
+    "wave-accurate-counting-skill-router\\references\\capabilities\\jingzhun-correction-patterns.md": "37831ca6188384736ecb1db6ed0d0b31acea5631e58fc8226a44f2acb94936f9",
+    "wave-accurate-counting-skill-router\\references\\capabilities\\jingzhun-end-conditions-skill.md": "714811e373bd5f5ac115dd19c0c73f0533fee3a66dc0a7773c4eaa72bb7c928d",
+    "wave-accurate-counting-skill-router\\references\\capabilities\\jingzhun-horizon-extension.md": "506bd39ed8eae905b5059ba29539d8b83fc8d52c4f5a7446e6eb2b8d35999bcf",
+    "wave-accurate-counting-skill-router\\references\\capabilities\\jingzhun-multi-timeframe-skill.md": "1ea2e3bc2fccfba52940098e473ec07797e73fe99ba39cca49976ae3469980d3",
+    "wave-accurate-counting-skill-router\\references\\capabilities\\jingzhun-top-capture-skill.md": "5a76d18c643ea078b6c9ab882f900b22c2846dcbe3af1b65e2f99c4c1d2b2aba",
+    "wave-accurate-counting-skill-router\\references\\capabilities\\jingzhun-trade-plan-skill.md": "f8adbf478d168937f32985b91b99039afcc06f844b2b5486949a54e21828b58f",
+    "wave-accurate-counting-skill-router\\references\\capabilities\\jingzhun-trend-position-skill.md": "0d65b605e237829e5cc18d4f98e3b8cfdd2857075d3e3b97f12e32d3ce6eef0c",
+    "wave-accurate-counting-skill-router\\references\\capabilities\\jingzhun-triangle-trading.md": "0f8831e491ec84e4c49c56da6cf94698af084adc362baef6c39fe1e2842e1e3b",
+    "wave-accurate-counting-skill-router\\references\\capabilities\\jingzhun-wave-levels-skill.md": "2d84194355a5b3aefa1c6436f8df21fcfdcfc3ea113ab266f274e839b025fab2",
+    "wave-accurate-counting-skill-router\\references\\capability-index.md": "b5c696d77f3a2f350ac8d79122f20bfdc399bff7962ce35e893037a1b3e4a594",
+    "wave-accurate-counting-skill-router\\references\\cheatsheet.md": "211d001f499168d2af329fcd6e2ae394edd4ec8829b181e9aa1cd512b6c4058f",
+    "wave-accurate-counting-skill-router\\references\\glossary.md": "28bd5083c8bcda84531fd765ec378309387838f038895a71c7218295abd5e71f",
+    "wave-accurate-counting-skill-router\\references\\overview.md": "f090974c48fe2741657ddd34c119fd7ebed8cdbb83f6c34e7eabac923d8c9a59",
+    "wave-accurate-counting-skill-router\\SKILL.md": "62614e0f9d6d647ad12163561d4612f132e1777343f99196b8ed07e6d4ca9061",
+    "jingzhun-top-capture-skill\\SKILL.md": "9c783326203afb878e24ea53c50373ceedbb739c95fe1a2aac9b61812d568edc",
+    "jingzhun-trade-plan-skill\\SKILL.md": "e3e723476a9a80328e4d1bd3b77e6a74900589e6d5395cc59cfb2b8e76e07b9b",
+    "jingzhun-trend-position-skill\\SKILL.md": "3e401c6aed14beaae865c6719e2e92ce0d15e15a1178721e5a929f9b4ca200f5",
+    "jingzhun-wave-levels-skill\\SKILL.md": "8f1ac94227f489a1966ca342b2209d06a99a3eaeb327aa1761bae8bbfcb5b493"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.wave-accurate-counting-skill",
+  "bundle_sha256": "8698a6ded896e6399f6019f17e2506daa2860f7a374a96909ac1f81e3538c1c5",
+  "variant": "pack",
+  "run_id": "run-20261024-081330-d242cf",
+  "decision": {
+    "schema_version": 1,
+    "requested": "pack",
+    "selected": "pack",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 7,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 pack，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "single（1 个入口 + 12 张内部能力卡）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}
